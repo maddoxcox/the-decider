@@ -65,6 +65,6 @@
   });
   
   app.use(express.static(path.join(process.cwd(), "dist")));
-  app.get("*", (req, res) => res.sendFile(path.join(process.cwd(), "dist", "index.html")));
+  app.get("/{*splat}", (req, res) => res.sendFile(path.join(process.cwd(), "dist", "index.html")));
                                                                                                     
   app.listen(3001, () => console.log("Server running on http://localhost:3001"));
