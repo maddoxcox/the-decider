@@ -2,6 +2,7 @@
   import express from "express";
   import cors from "cors";                                                                          
   import Anthropic from "@anthropic-ai/sdk";
+  import path from "path";
 
   const app = express();
   app.use(cors());
@@ -62,5 +63,8 @@
       res.status(500).json({ error: "Failed to get a decision" });
     }                                                                                               
   });
+  
+  app.use(express.static(path.join(process.cwd(), "dist")));
+  app.get("*", (req, res) => res.sendFile(path.join(process.cwd(), "dist", "index.html")));
                                                                                                     
   app.listen(3001, () => console.log("Server running on http://localhost:3001"));
